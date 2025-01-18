@@ -128,6 +128,70 @@ st.markdown("""
             padding: 0.75rem !important;
             border-radius: 0.5rem !important;
         }
+
+        /* Hide Streamlit elements */
+        .stApp footer,
+        .stApp footer::before,
+        .stApp footer::after,
+        .viewerBadge_container__1QSob,
+        .stDeployButton,
+        [data-testid="stFooterBlock"],
+        [data-testid="stDecoration"],
+        div.element-container div.stMarkdown {
+            display: none !important;
+        }
+
+        /* Adjust main container */
+        .main .block-container {
+            padding: 0 !important;
+            max-width: 100% !important;
+        }
+
+        /* Success message styling */
+        .stSuccess {
+            background-color: #043927 !important;
+            color: white !important;
+            padding: 8px !important;
+            border-radius: 0 !important;
+        }
+
+        /* Chat container adjustments */
+        .stChatFloatingInputContainer {
+            padding: 0.5rem !important;
+            background: transparent !important;
+        }
+
+        /* Chat input styling */
+        .stChatInput {
+            padding: 0.5rem !important;
+            border-radius: 20px !important;
+        }
+
+        /* Message container */
+        .stChatMessage {
+            background: transparent !important;
+            padding: 1rem !important;
+        }
+
+        /* Title adjustments */
+        h1 {
+            font-size: 1.5rem !important;
+            padding: 0.5rem !important;
+            margin: 0 !important;
+            text-align: center !important;
+        }
+
+        /* Remove extra padding */
+        .stApp > div:first-child {
+            padding-top: 0 !important;
+        }
+
+        /* Audio player styling */
+        audio {
+            width: 100% !important;
+            max-width: 300px !important;
+            margin: 0.5rem 0 !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -211,7 +275,7 @@ if "audio_elements" not in st.session_state:
     st.session_state.audio_elements = {}
 
 # streamlit page title
-st.title("🤖 GPT-4o - ChatBot")
+st.title("Chinese Language Tutor")
 
 # display chat history with custom avatars
 for message in st.session_state.chat_history:
