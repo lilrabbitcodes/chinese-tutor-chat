@@ -111,27 +111,38 @@ st.markdown("""
         .stChatInputContainer {
             display: flex !important;
             align-items: center !important;
+            justify-content: space-between !important;
             gap: 10px !important;
             border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-            padding: 10px !important;
+            padding: 10px 20px !important;
             background: black !important;
             position: sticky !important;
             bottom: 0 !important;
+            margin: 0 -20px !important;
+            width: calc(100% + 40px) !important;
         }
 
         /* Chat input */
         .stChatInput {
             flex: 1 !important;
-            border: none !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 20px !important;
             padding: 10px 15px !important;
             background-color: #222 !important;
             color: white !important;
             font-size: 14px !important;
+            min-width: 0 !important;
+            margin-right: 5px !important;
+        }
+
+        .stChatInput:focus {
+            border-color: rgba(255, 255, 255, 0.5) !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         .stChatInput::placeholder {
-            color: #aaa !important;
+            color: rgba(255, 255, 255, 0.5) !important;
         }
 
         /* Send button */
@@ -140,13 +151,20 @@ st.markdown("""
             color: black !important;
             border: none !important;
             border-radius: 50% !important;
-            width: 40px !important;
-            height: 40px !important;
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             font-size: 18px !important;
             cursor: pointer !important;
+            margin-left: 5px !important;
+            transition: transform 0.2s !important;
+        }
+
+        .stChatInput > div:hover {
+            transform: scale(1.05) !important;
         }
 
         /* Audio player */
@@ -179,6 +197,8 @@ st.markdown("""
 
             .stChatInputContainer {
                 padding: 10px !important;
+                margin: 0 -10px !important;
+                width: calc(100% + 20px) !important;
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
             }
         }
