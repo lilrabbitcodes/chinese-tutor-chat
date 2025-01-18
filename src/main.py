@@ -22,7 +22,7 @@ st.set_page_config(
     menu_items={}
 )
 
-# Updated CSS with background color fixes
+# Updated CSS with original Streamlit colors
 st.markdown("""
     <style>
         /* Reset and base styles */
@@ -34,7 +34,6 @@ st.markdown("""
 
         /* Main container styles */
         .stApp {
-            background-color: #ffffff !important;
             margin: 0 !important;
             padding: 0 !important;
             max-width: 100% !important;
@@ -43,14 +42,13 @@ st.markdown("""
 
         /* Chat container styles */
         .stChatFloatingInputContainer {
-            background-color: #ffffff !important;
             padding: 1rem !important;
-            border-top: 1px solid #f0f0f0 !important;
+            border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
         }
 
         .stChatMessage {
-            background-color: #ffffff !important;
             padding: 1rem !important;
+            background-color: transparent !important;
         }
 
         /* Remove all Streamlit elements */
@@ -73,19 +71,16 @@ st.markdown("""
             padding: 0 !important;
             margin: 0 !important;
             max-width: 100% !important;
-            background-color: #ffffff !important;
         }
 
         /* Element spacing */
         .element-container, .stMarkdown, .stChatMessage {
             padding: 0.5rem 1rem !important;
             margin: 0 !important;
-            background-color: #ffffff !important;
         }
 
         /* Body styles */
         body {
-            background-color: #ffffff !important;
             margin: 0 !important;
             padding: 0 !important;
             min-height: 100vh !important;
@@ -93,16 +88,14 @@ st.markdown("""
 
         /* Chat message styles */
         .stChatMessage {
-            border-radius: 0 !important;
+            border-radius: 0.5rem !important;
             border: none !important;
-            box-shadow: none !important;
         }
 
         /* Input container */
         .stChatInputContainer {
             padding: 1rem !important;
-            background-color: #ffffff !important;
-            border-top: 1px solid #f0f0f0 !important;
+            border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
         }
 
         /* Audio player styling */
@@ -110,6 +103,12 @@ st.markdown("""
             width: 100% !important;
             max-width: 300px !important;
             margin-top: 0.5rem !important;
+        }
+
+        /* Success message styling */
+        .stSuccess {
+            padding: 0.5rem 1rem !important;
+            margin-bottom: 1rem !important;
         }
     </style>
 """, unsafe_allow_html=True)
