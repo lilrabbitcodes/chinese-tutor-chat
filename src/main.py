@@ -36,16 +36,25 @@ st.markdown("""
         .stApp {
             background-color: black !important;
             color: white !important;
+            min-height: 100vh !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 20px !important;
         }
 
         .main .block-container {
             width: 360px !important;
+            height: 640px !important;
             margin: 0 auto !important;
             padding: 20px !important;
             background-color: black !important;
             border: 2px solid white !important;
             border-radius: 20px !important;
-            min-height: 640px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            position: relative !important;
         }
 
         /* Header Section */
@@ -187,19 +196,15 @@ st.markdown("""
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
+            .stApp {
+                padding: 0 !important;
+            }
+
             .main .block-container {
                 width: 100% !important;
                 height: 100vh !important;
                 border: none !important;
                 border-radius: 0 !important;
-                padding: 10px !important;
-            }
-
-            .stChatInputContainer {
-                padding: 10px !important;
-                margin: 0 -10px !important;
-                width: calc(100% + 20px) !important;
-                padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
             }
         }
     </style>
