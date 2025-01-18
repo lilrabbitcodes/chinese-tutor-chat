@@ -20,49 +20,42 @@ if 'STREAMLIT_SHARING_MODE' in os.environ:
         page_icon="🎓",
         layout="centered",
         initial_sidebar_state="collapsed",
-        menu_items=None
+        menu_items={}  # This removes the menu
     )
 
 # Hide streamlit style elements
 st.markdown("""
     <style>
-        /* Hide the running indicator and other Streamlit elements */
-        div[data-testid="stStatusWidget"],
-        div[data-testid="stToolbar"],
-        #MainMenu,
-        header,
-        footer,
-        [data-testid="stFooterBlock"] {
-            visibility: hidden !important;
-            height: 0px !important;
-            position: fixed !important;
+        /* Remove all Streamlit elements */
+        #MainMenu, header, footer, .stDeployButton, [data-testid="stFooterBlock"], 
+        [data-testid="stToolbar"], [data-testid="stDecoration"], 
+        [data-testid="stStatusWidget"], .stActionButton {
             display: none !important;
-        }
-
-        /* Additional style to ensure the running indicator is hidden */
-        .stApp > header {
-            display: none !important;
-        }
-
-        /* Hide Streamlit's default header */
-        .css-18ni7ap.e8zbici2 {
-            display: none !important;
-        }
-
-        /* Hide the top margin */
-        .block-container {
-            padding-top: 1rem !important;
-            padding-bottom: 0px !important;
-        }
-
-        /* Hide Streamlit footer */
-        footer:after {
-            content: none !important;
         }
         
-        /* Additional footer hiding */
-        .reportview-container .main footer {
+        /* Remove padding and margins */
+        .main .block-container {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+        
+        /* Full width container */
+        .stApp {
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+        }
+        
+        /* Remove watermark */
+        .viewerBadge_container__1QSob {
             display: none !important;
+        }
+        
+        /* Remove extra spacing */
+        .element-container, .stMarkdown {
+            padding: 0 !important;
+            margin: 0 !important;
         }
     </style>
 """, unsafe_allow_html=True)
