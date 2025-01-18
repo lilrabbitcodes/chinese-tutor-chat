@@ -15,14 +15,13 @@ load_dotenv()
 
 # MUST BE THE FIRST STREAMLIT COMMAND
 st.set_page_config(
-    page_title="Chinese Tutor Chat",
-    page_icon="🎓",
+    page_title="Chinese Language Tutor",
+    page_icon="🤖",
     layout="centered",
-    initial_sidebar_state="collapsed",
-    menu_items={}
+    initial_sidebar_state="collapsed"
 )
 
-# Updated CSS with modern dark theme
+# Dark theme CSS
 st.markdown("""
     <style>
         /* Reset and base styles */
@@ -40,66 +39,59 @@ st.markdown("""
         }
 
         .main .block-container {
-            max-width: 360px !important;
+            width: 360px !important;
             margin: 0 auto !important;
             padding: 20px !important;
             background-color: black !important;
             border: 2px solid white !important;
             border-radius: 20px !important;
-            height: calc(100vh - 40px) !important;
-            display: flex !important;
-            flex-direction: column !important;
+            min-height: 640px !important;
         }
 
-        /* Header styling */
+        /* Header Section */
         h1 {
-            font-size: 16px !important;
-            padding: 10px 0 !important;
-            text-align: center !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-            margin-bottom: 20px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: space-between !important;
+            padding: 10px 0 !important;
+            font-size: 16px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
             color: white !important;
+            margin-bottom: 20px !important;
         }
 
-        /* Chat messages container */
-        .stChatMessageContainer {
-            flex: 1 !important;
-            overflow-y: auto !important;
-            margin: 20px 0 !important;
-            gap: 10px !important;
-            display: flex !important;
-            flex-direction: column !important;
-        }
-
-        /* Message styling */
+        /* Chat Messages */
         .stChatMessage {
             display: flex !important;
             align-items: flex-end !important;
             max-width: 70% !important;
-            margin: 5px 0 !important;
-            padding: 0 !important;
+            margin: 10px 0 !important;
         }
 
         /* Bot message */
         .stChatMessage[data-testid="assistant-message"] {
             align-self: flex-start !important;
+        }
+
+        .stChatMessage[data-testid="assistant-message"] > div {
             background-color: #444 !important;
             border-radius: 20px 20px 20px 0 !important;
             padding: 10px 15px !important;
+            font-size: 14px !important;
             color: white !important;
         }
 
         /* User message */
         .stChatMessage[data-testid="user-message"] {
             align-self: flex-end !important;
+        }
+
+        .stChatMessage[data-testid="user-message"] > div {
             background-color: white !important;
             border-radius: 20px 20px 0 20px !important;
             padding: 10px 15px !important;
+            font-size: 14px !important;
             color: black !important;
-            margin-left: 30% !important;
         }
 
         /* Avatar styling */
@@ -107,28 +99,29 @@ st.markdown("""
             width: 32px !important;
             height: 32px !important;
             border-radius: 50% !important;
-            margin-right: 10px !important;
             background-color: white !important;
+            color: black !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
+            margin-right: 10px !important;
         }
 
-        /* Input container */
+        /* Input Section */
         .stChatInputContainer {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
             border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
             padding: 10px !important;
             background: black !important;
             position: sticky !important;
             bottom: 0 !important;
-            z-index: 100 !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 10px !important;
         }
 
         /* Chat input */
         .stChatInput {
+            flex: 1 !important;
             border: none !important;
             border-radius: 20px !important;
             padding: 10px 15px !important;
@@ -145,6 +138,7 @@ st.markdown("""
         .stChatInput > div {
             background-color: white !important;
             color: black !important;
+            border: none !important;
             border-radius: 50% !important;
             width: 40px !important;
             height: 40px !important;
@@ -152,6 +146,7 @@ st.markdown("""
             align-items: center !important;
             justify-content: center !important;
             font-size: 18px !important;
+            cursor: pointer !important;
         }
 
         /* Audio player */
@@ -172,23 +167,14 @@ st.markdown("""
             display: none !important;
         }
 
-        /* Success message */
-        .stSuccess {
-            background-color: #222 !important;
-            color: white !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            border-radius: 10px !important;
-            padding: 8px 16px !important;
-            margin-bottom: 10px !important;
-        }
-
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .main .block-container {
-                margin: 0 !important;
+                width: 100% !important;
                 height: 100vh !important;
                 border: none !important;
                 border-radius: 0 !important;
+                padding: 10px !important;
             }
 
             .stChatInputContainer {
@@ -279,7 +265,7 @@ if "audio_elements" not in st.session_state:
     st.session_state.audio_elements = {}
 
 # streamlit page title
-st.title("🤖 GPT-4o - ChatBot")
+st.title("Chinese Language Tutor")
 
 # display chat history with custom avatars
 for message in st.session_state.chat_history:
