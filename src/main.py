@@ -22,7 +22,7 @@ st.set_page_config(
     menu_items={}
 )
 
-# Updated CSS with original Streamlit colors
+# Updated CSS with better text alignment
 st.markdown("""
     <style>
         /* Reset and base styles */
@@ -40,56 +40,35 @@ st.markdown("""
             overflow: hidden !important;
         }
 
-        /* Chat container styles */
-        .stChatFloatingInputContainer {
-            padding: 1rem !important;
-            border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
-        }
-
+        /* Chat message container */
         .stChatMessage {
-            padding: 1rem !important;
             background-color: transparent !important;
+            padding: 0.75rem 1rem !important;
+            margin: 0.5rem 0 !important;
         }
 
-        /* Remove all Streamlit elements */
-        #MainMenu, div.stApp > header, div.stApp > footer,
-        .stDeployButton, [data-testid="stFooterBlock"], 
-        [data-testid="stToolbar"], [data-testid="stDecoration"], 
-        [data-testid="stStatusWidget"], .stActionButton,
-        .viewerBadge_container__1QSob, .stStreamlitFooter,
-        .stFooterBranding, .stFooter, footer, footer::before, footer::after {
-            display: none !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            visibility: hidden !important;
-            position: absolute !important;
-            top: -9999px !important;
+        /* Message content alignment */
+        .stChatMessage > div {
+            padding: 0.5rem !important;
+            gap: 0.5rem !important;
         }
 
-        /* Container adjustments */
-        .main .block-container, div.stApp > div {
+        /* Avatar styling */
+        .stChatMessage .stAvatar {
+            margin-right: 0.75rem !important;
+        }
+
+        /* Message text container */
+        .stMarkdown {
             padding: 0 !important;
             margin: 0 !important;
-            max-width: 100% !important;
         }
 
-        /* Element spacing */
-        .element-container, .stMarkdown, .stChatMessage {
-            padding: 0.5rem 1rem !important;
-            margin: 0 !important;
-        }
-
-        /* Body styles */
-        body {
-            margin: 0 !important;
-            padding: 0 !important;
-            min-height: 100vh !important;
-        }
-
-        /* Chat message styles */
-        .stChatMessage {
-            border-radius: 0.5rem !important;
-            border: none !important;
+        /* Message text styling */
+        .stMarkdown p {
+            margin: 0.5rem 0 !important;
+            line-height: 1.5 !important;
+            white-space: pre-wrap !important;
         }
 
         /* Input container */
@@ -98,17 +77,56 @@ st.markdown("""
             border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
         }
 
+        /* Audio player container */
+        .element-container:has(audio) {
+            margin-top: 0.5rem !important;
+            padding: 0 !important;
+        }
+
         /* Audio player styling */
         audio {
             width: 100% !important;
             max-width: 300px !important;
-            margin-top: 0.5rem !important;
+            margin: 0.5rem 0 !important;
+        }
+
+        /* Remove Streamlit elements */
+        #MainMenu, div.stApp > header, div.stApp > footer,
+        .stDeployButton, [data-testid="stFooterBlock"], 
+        [data-testid="stToolbar"], [data-testid="stDecoration"], 
+        [data-testid="stStatusWidget"], .stActionButton,
+        .viewerBadge_container__1QSob, .stStreamlitFooter,
+        .stFooterBranding, .stFooter, footer {
+            display: none !important;
+        }
+
+        /* Container adjustments */
+        .main .block-container {
+            padding: 0 !important;
+            max-width: 100% !important;
         }
 
         /* Success message styling */
         .stSuccess {
             padding: 0.5rem 1rem !important;
             margin-bottom: 1rem !important;
+        }
+
+        /* Chinese text emphasis */
+        .stMarkdown strong {
+            font-weight: 600 !important;
+        }
+
+        /* Pinyin section spacing */
+        .stMarkdown hr {
+            margin: 1rem 0 !important;
+            border-color: rgba(49, 51, 63, 0.1) !important;
+        }
+
+        /* Chat input styling */
+        .stChatInput {
+            padding: 0.75rem !important;
+            border-radius: 0.5rem !important;
         }
     </style>
 """, unsafe_allow_html=True)
