@@ -125,17 +125,17 @@ st.markdown("""
             padding: 12px 15px !important;
             color: #666 !important;
             font-size: 14px !important;
-            width: 100% !important;
-            display: flex !important;
-            align-items: center !important;
         }
 
-        /* Remove any background colors */
+        /* Override all backgrounds */
         .stChatInput,
         .stChatInput > div,
         .stChatInput div[data-baseweb="block"],
-        .stChatInput div[data-baseweb="input"] {
+        .stChatInput div[data-baseweb="input"],
+        .stChatInput div[data-baseweb="textarea"],
+        .stChatInput div {
             background: transparent !important;
+            border-radius: 0 !important;
         }
 
         /* Input placeholder */
@@ -143,19 +143,11 @@ st.markdown("""
             color: #666 !important;
         }
 
-        /* Send button */
+        /* Send button - only keep essential styles */
         .stChatInput > div:last-child {
-            background-color: #333 !important;
-            border-radius: 50% !important;
-            width: 32px !important;
-            height: 32px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            color: #333 !important;
             cursor: pointer !important;
             margin-left: 8px !important;
-            flex-shrink: 0 !important;
-            color: white !important;
         }
 
         /* Audio player */
