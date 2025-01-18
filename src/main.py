@@ -121,18 +121,20 @@ st.markdown("""
 
         /* Chat input */
         .stChatInput {
-            background: #f5f5f5 !important;
             border: none !important;
-            border-radius: 20px !important;
             padding: 12px 15px !important;
             color: #666 !important;
             font-size: 14px !important;
+            width: 100% !important;
             display: flex !important;
             align-items: center !important;
         }
 
-        /* Remove purple highlight */
-        .stChatInput div[data-baseweb="block"] {
+        /* Remove any background colors */
+        .stChatInput,
+        .stChatInput > div,
+        .stChatInput div[data-baseweb="block"],
+        .stChatInput div[data-baseweb="input"] {
             background: transparent !important;
         }
 
