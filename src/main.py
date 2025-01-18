@@ -22,7 +22,7 @@ st.set_page_config(
     menu_items={}
 )
 
-# Updated CSS with better input box alignment
+# Updated CSS with dark theme
 st.markdown("""
     <style>
         /* Reset and base styles */
@@ -30,91 +30,115 @@ st.markdown("""
             margin: 0 !important;
             padding: 0 !important;
             box-sizing: border-box !important;
+            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
         }
 
         /* Main container styles */
         .stApp {
-            margin: 0 !important;
-            padding: 0 !important;
-            max-width: 100% !important;
-            overflow: hidden !important;
+            background-color: black !important;
+            color: white !important;
+        }
+
+        /* Chat container */
+        .main .block-container {
+            max-width: 800px !important;
+            margin: 0 auto !important;
+            padding: 20px !important;
+            background-color: black !important;
+        }
+
+        /* Title styling */
+        h1 {
+            color: white !important;
+            font-size: 18px !important;
+            text-align: center !important;
+            padding: 20px !important;
+            margin-bottom: 20px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
 
         /* Chat message container */
         .stChatMessage {
-            background-color: transparent !important;
-            padding: 0.75rem 1rem !important;
-            margin: 0.5rem 0 !important;
+            padding: 10px 20px !important;
+            margin: 5px 0 !important;
+            max-width: 70% !important;
         }
 
-        /* Message content alignment */
+        /* Bot message styling */
+        .stChatMessage[data-testid="assistant-message"] {
+            background-color: #222 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 15px !important;
+            align-self: flex-start !important;
+            color: white !important;
+        }
+
+        /* User message styling */
+        .stChatMessage[data-testid="user-message"] {
+            background-color: white !important;
+            border-radius: 15px !important;
+            align-self: flex-end !important;
+            color: black !important;
+            margin-left: 30% !important;
+        }
+
+        /* Message content */
         .stChatMessage > div {
-            padding: 0.5rem !important;
-            gap: 0.5rem !important;
+            gap: 10px !important;
+            padding: 0 !important;
         }
 
         /* Avatar styling */
         .stChatMessage .stAvatar {
-            margin-right: 0.75rem !important;
-        }
-
-        /* Message text container */
-        .stMarkdown {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        /* Message text styling */
-        .stMarkdown p {
-            margin: 0.5rem 0 !important;
-            line-height: 1.5 !important;
-            white-space: pre-wrap !important;
+            width: 32px !important;
+            height: 32px !important;
+            margin: 0 10px 0 0 !important;
         }
 
         /* Input container */
         .stChatInputContainer {
-            padding: 1rem !important;
-            border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
-            background: white !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 20px !important;
+            background: black !important;
             position: sticky !important;
             bottom: 0 !important;
             z-index: 100 !important;
         }
 
-        /* Chat input box */
+        /* Chat input styling */
         .stChatInput {
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 20px !important;
-            border: 1px solid #e0e0e0 !important;
             padding: 10px 15px !important;
-            height: 45px !important;
-            background: white !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+            background-color: black !important;
+            color: white !important;
+            font-size: 14px !important;
         }
 
-        /* Chat input box focus */
+        /* Chat input focus */
         .stChatInput:focus {
-            border-color: #9e9e9e !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            border-color: white !important;
+            box-shadow: none !important;
         }
 
-        /* Send button container */
+        /* Send button */
         .stChatInput > div {
-            right: 8px !important;
-            height: 32px !important;
+            background-color: white !important;
+            border-radius: 50% !important;
             width: 32px !important;
-            border-radius: 16px !important;
-            background: #f0f2f6 !important;
+            height: 32px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
+            color: black !important;
         }
 
         /* Audio player styling */
         audio {
             width: 100% !important;
-            max-width: 300px !important;
-            margin: 0.5rem 0 !important;
-            border-radius: 8px !important;
+            max-width: 250px !important;
+            margin-top: 10px !important;
+            filter: invert(1) !important;
         }
 
         /* Remove Streamlit elements */
@@ -127,31 +151,35 @@ st.markdown("""
             display: none !important;
         }
 
-        /* Container adjustments */
-        .main .block-container {
-            padding: 0 !important;
-            max-width: 100% !important;
-        }
-
-        /* Success message styling */
+        /* Success message */
         .stSuccess {
-            padding: 0.5rem 1rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        /* Chat container spacing */
-        .stChatFloatingInputContainer {
-            padding-bottom: env(safe-area-inset-bottom) !important;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 10px !important;
+            padding: 10px 20px !important;
+            margin-bottom: 20px !important;
         }
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
-            .stChatInput {
-                font-size: 16px !important;  /* Prevents zoom on mobile */
+            .main .block-container {
+                padding: 10px !important;
             }
-            
+
+            .stChatMessage {
+                max-width: 85% !important;
+                padding: 8px 15px !important;
+            }
+
             .stChatInputContainer {
-                padding: 0.75rem 0.5rem !important;
+                padding: 15px 10px !important;
+                padding-bottom: max(15px, env(safe-area-inset-bottom)) !important;
+            }
+
+            h1 {
+                font-size: 16px !important;
+                padding: 15px !important;
             }
         }
     </style>
