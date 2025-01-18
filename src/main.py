@@ -22,7 +22,7 @@ st.set_page_config(
     menu_items={}
 )
 
-# Updated CSS with fixed alignment
+# Updated CSS with better input box alignment
 st.markdown("""
     <style>
         /* Reset and base styles */
@@ -34,86 +34,87 @@ st.markdown("""
 
         /* Main container styles */
         .stApp {
-            background-color: #f0f2f6 !important;
-        }
-
-        /* Chat container */
-        .main .block-container {
-            padding: 0 !important;
-            max-width: 800px !important;
-            margin: 0 auto !important;
-            background-color: white !important;
-        }
-
-        /* Title styling */
-        h1 {
-            font-size: 1.5rem !important;
-            padding: 1rem !important;
-            text-align: center !important;
-            border-bottom: 1px solid #e0e0e0 !important;
-            background: white !important;
             margin: 0 !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
         }
 
         /* Chat message container */
         .stChatMessage {
-            padding: 1rem !important;
-            border-bottom: 1px solid #f0f0f0 !important;
-            background: white !important;
+            background-color: transparent !important;
+            padding: 0.75rem 1rem !important;
+            margin: 0.5rem 0 !important;
         }
 
-        /* Message content */
+        /* Message content alignment */
         .stChatMessage > div {
-            gap: 1rem !important;
-            padding: 0 !important;
-            align-items: flex-start !important;
+            padding: 0.5rem !important;
+            gap: 0.5rem !important;
         }
 
         /* Avatar styling */
         .stChatMessage .stAvatar {
-            width: 40px !important;
-            height: 40px !important;
-            margin: 0 !important;
+            margin-right: 0.75rem !important;
         }
 
-        /* Message text styling */
+        /* Message text container */
         .stMarkdown {
             padding: 0 !important;
             margin: 0 !important;
         }
 
+        /* Message text styling */
         .stMarkdown p {
             margin: 0.5rem 0 !important;
-            line-height: 1.6 !important;
-            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            white-space: pre-wrap !important;
         }
 
         /* Input container */
         .stChatInputContainer {
             padding: 1rem !important;
+            border-top: 1px solid rgba(49, 51, 63, 0.1) !important;
             background: white !important;
-            border-top: 1px solid #e0e0e0 !important;
             position: sticky !important;
             bottom: 0 !important;
             z-index: 100 !important;
         }
 
-        /* Chat input styling */
+        /* Chat input box */
         .stChatInput {
-            border-radius: 24px !important;
+            border-radius: 20px !important;
             border: 1px solid #e0e0e0 !important;
-            padding: 12px 20px !important;
-            height: 48px !important;
-            background: #f8f9fa !important;
-            margin: 0 !important;
+            padding: 10px 15px !important;
+            height: 45px !important;
+            background: white !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+        }
+
+        /* Chat input box focus */
+        .stChatInput:focus {
+            border-color: #9e9e9e !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Send button container */
+        .stChatInput > div {
+            right: 8px !important;
+            height: 32px !important;
+            width: 32px !important;
+            border-radius: 16px !important;
+            background: #f0f2f6 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
         /* Audio player styling */
         audio {
             width: 100% !important;
-            max-width: 250px !important;
-            height: 36px !important;
-            margin-top: 0.5rem !important;
+            max-width: 300px !important;
+            margin: 0.5rem 0 !important;
+            border-radius: 8px !important;
         }
 
         /* Remove Streamlit elements */
@@ -126,35 +127,31 @@ st.markdown("""
             display: none !important;
         }
 
-        /* Success message */
+        /* Container adjustments */
+        .main .block-container {
+            padding: 0 !important;
+            max-width: 100% !important;
+        }
+
+        /* Success message styling */
         .stSuccess {
             padding: 0.5rem 1rem !important;
-            margin: 0 !important;
-            border-radius: 0 !important;
-            border-bottom: 1px solid #e0e0e0 !important;
+            margin-bottom: 1rem !important;
+        }
+
+        /* Chat container spacing */
+        .stChatFloatingInputContainer {
+            padding-bottom: env(safe-area-inset-bottom) !important;
         }
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
-            .main .block-container {
-                max-width: 100% !important;
-            }
-
-            .stChatMessage {
-                padding: 0.75rem !important;
-            }
-
-            .stChatInputContainer {
-                padding: 0.75rem !important;
-                padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
-            }
-
             .stChatInput {
-                font-size: 16px !important;
+                font-size: 16px !important;  /* Prevents zoom on mobile */
             }
-
-            audio {
-                max-width: 200px !important;
+            
+            .stChatInputContainer {
+                padding: 0.75rem 0.5rem !important;
             }
         }
     </style>
