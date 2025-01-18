@@ -34,247 +34,95 @@ st.markdown("""
 
         /* Main container */
         .stApp {
-            background-color: black !important;
-            color: white !important;
-            min-height: 100vh !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            padding: 20px !important;
+            background-color: white !important;
+            color: #333 !important;  /* Dark text for contrast */
+            padding: 0 20px !important;
         }
 
         .main .block-container {
-            padding: 0 !important;
             max-width: 800px !important;
             margin: 0 auto !important;
-            height: calc(100vh - env(safe-area-inset-top)) !important;
+            height: 100vh !important;
             display: flex !important;
             flex-direction: column !important;
+            padding: 0 !important;
+            position: relative !important;
         }
 
-        /* Header Section */
-        h1 {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            padding: 20px 50px !important;
-            font-size: 18px !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        /* Success message */
+        .stSuccess {
+            margin: 0 20px !important;
+            background-color: #043927 !important;
             color: white !important;
-            margin-bottom: 20px !important;
-            text-align: center !important;
-            background: black !important;
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 100 !important;
+            border-radius: 4px !important;
         }
 
-        /* Chat Messages */
+        /* Title styling */
+        h1 {
+            font-size: 18px !important;
+            padding: 20px !important;
+            text-align: center !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+            margin: 0 20px !important;
+            color: #333 !important;  /* Dark text for contrast */
+        }
+
+        /* Message styling */
         .stChatMessage {
             display: flex !important;
             align-items: flex-start !important;
-            padding: 15px !important;
-            margin: 8px 50px !important;
-            max-width: calc(85% - 100px) !important;
+            max-width: 80% !important;
+            margin: 10px 0 !important;
+            padding: 12px !important;
             border-radius: 15px !important;
-        }
-
-        /* Message content wrapper */
-        .stChatMessage > div {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 4px !important;
-        }
-
-        /* Audio container alignment */
-        .stChatMessage .element-container {
-            margin: 4px 0 0 0 !important;
-            padding: 0 !important;
-        }
-
-        /* Audio player styling */
-        audio {
-            width: 100% !important;
-            max-width: 250px !important;
-            height: 36px !important;
-            margin: 0 !important;
-            filter: invert(1) !important;
-        }
-
-        /* Remove red border and all outlines */
-        .stChatInput, 
-        .stChatInput:focus,
-        .stChatInput:hover,
-        .stChatInput:active,
-        .stChatInput[data-focused="true"],
-        .stChatInput[data-baseweb="textarea"],
-        .stChatInput[data-baseweb="textarea"]:focus,
-        .stChatInput textarea,
-        .stChatInput textarea:focus {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            background-color: #222 !important;
-            color: white !important;
-            font-size: 14px !important;
-            padding: 10px 15px !important;
-            border-radius: 20px !important;
-            flex: 1 !important;
-            min-width: 0 !important;
-            margin-right: 5px !important;
-        }
-
-        /* Override any focus styles */
-        *:focus {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Base web overrides */
-        [data-baseweb="base-input"], 
-        [data-baseweb="textarea"],
-        [data-baseweb="input"] {
-            background-color: #222 !important;
-            border: none !important;
+            color: white !important;  /* White text for messages */
         }
 
         /* Bot message */
         .stChatMessage[data-testid="assistant-message"] {
             align-self: flex-start !important;
-            background: #222 !important;
+            background: #6E45E2 !important;  /* Purple background */
             border-radius: 15px 15px 15px 0 !important;
-            margin-right: 100px !important;
-        }
-
-        .stChatMessage[data-testid="assistant-message"] > div {
-            background-color: #444 !important;
-            border-radius: 20px 20px 20px 0 !important;
-            padding: 10px 15px !important;
-            font-size: 14px !important;
-            color: white !important;
+            margin-right: 60px !important;
         }
 
         /* User message */
         .stChatMessage[data-testid="user-message"] {
             align-self: flex-end !important;
-            background: #6E45E2 !important;
+            background: #333 !important;  /* Dark background */
             border-radius: 15px 15px 0 15px !important;
-            margin-left: 100px !important;
+            margin-left: 60px !important;
         }
 
-        .stChatMessage[data-testid="user-message"] > div {
-            background-color: white !important;
-            border-radius: 20px 20px 0 20px !important;
-            padding: 10px 15px !important;
-            font-size: 14px !important;
-            color: black !important;
-        }
-
-        /* Avatar styling */
-        .stChatMessage .stAvatar {
-            position: sticky !important;
-            top: 0 !important;
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 50% !important;
-            margin-right: 10px !important;
-            flex-shrink: 0 !important;
-        }
-
-        /* Input Section */
+        /* Input container */
         .stChatInputContainer {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            gap: 10px !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 15px 50px !important;
-            background: black !important;
+            border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+            padding: 15px 20px !important;
+            margin: 0 20px !important;
+            background: white !important;
             position: sticky !important;
             bottom: 0 !important;
-            z-index: 100 !important;
-            margin-top: auto !important;
         }
 
         /* Chat input */
-        .stChatInput, 
-        .stChatInput:focus,
-        .stChatInput:hover,
-        .stChatInput:active,
-        .stChatInput[data-focused="true"],
-        .stChatInput[data-baseweb="textarea"],
-        .stChatInput[data-baseweb="textarea"]:focus {
-            flex: 1 !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            border-radius: 20px !important;
-            padding: 10px 15px !important;
-            background-color: #222 !important;
-            color: white !important;
-            font-size: 14px !important;
-            min-width: 0 !important;
-            margin-right: 5px !important;
-            outline: none !important;
-            box-shadow: none !important;
-            transition: border-color 0.2s ease !important;
-        }
-
-        /* Override all possible white backgrounds */
-        .stChatInput, 
-        .stChatInput:focus,
-        .stChatInput:hover,
-        .stChatInput > div,
-        .stChatInput textarea,
-        .stChatInput [data-baseweb="textarea"],
-        .stChatInput [data-baseweb="textarea"]:focus,
-        .stChatInput [data-baseweb="base-input"],
-        .stChatInput [data-baseweb="base-input"]:focus,
-        .stChatInput [data-baseweb="input"],
-        .stChatInput [data-baseweb="input"]:focus,
-        .stChatInput * {
-            background-color: #222 !important;
-            color: white !important;
-        }
-
-        /* Input field focus state */
-        .stChatInput:focus,
-        .stChatInput:focus-within {
-            border-color: rgba(255, 255, 255, 0.5) !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Input field placeholder */
-        .stChatInput::placeholder,
-        .stChatInput textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Send button - keep this white */
-        .stChatInput > div:last-child {
-            background-color: white !important;
-            color: black !important;
+        .stChatInput {
+            background: #f5f5f5 !important;
             border: none !important;
-            border-radius: 50% !important;
-            width: 36px !important;
-            height: 36px !important;
-            min-width: 36px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            font-size: 18px !important;
-            cursor: pointer !important;
-            margin-left: 5px !important;
-            transition: transform 0.2s !important;
+            border-radius: 20px !important;
+            padding: 12px 15px !important;
+            color: #333 !important;
+            font-size: 14px !important;
         }
 
-        /* Remove Streamlit elements */
-        #MainMenu, div.stApp > header, div.stApp > footer,
-        .stDeployButton, [data-testid="stFooterBlock"], 
-        [data-testid="stToolbar"], [data-testid="stDecoration"], 
-        [data-testid="stStatusWidget"], .stActionButton,
-        .viewerBadge_container__1QSob, .stStreamlitFooter,
-        .stFooterBranding, .stFooter, footer {
-            display: none !important;
+        .stChatInput::placeholder {
+            color: #888 !important;
+        }
+
+        /* Audio player */
+        audio {
+            width: 100% !important;
+            max-width: 200px !important;
+            margin-top: 8px !important;
         }
 
         /* Mobile optimizations */
@@ -283,16 +131,8 @@ st.markdown("""
                 padding: 0 !important;
             }
 
-            .main .block-container {
-                width: 100% !important;
-                height: 100vh !important;
-                border: none !important;
-                border-radius: 0 !important;
-            }
-
             .stChatMessage {
-                margin: 8px 20px !important;
-                max-width: calc(85% - 40px) !important;
+                max-width: 85% !important;
             }
 
             .stChatMessage[data-testid="assistant-message"] {
@@ -303,97 +143,11 @@ st.markdown("""
                 margin-left: 40px !important;
             }
 
-            h1 {
-                padding: 15px 20px !important;
-            }
-
             .stChatInputContainer {
-                padding: 15px 20px !important;
+                margin: 0 !important;
+                padding: 15px !important;
                 padding-bottom: max(15px, env(safe-area-inset-bottom)) !important;
             }
-
-            .stSuccess {
-                margin: 0 20px !important;
-            }
-        }
-
-        /* Message container fixes */
-        .stChatMessage {
-            display: flex !important;
-            align-items: flex-start !important;
-            max-width: 70% !important;
-            margin: 10px 0 !important;
-            position: relative !important;
-        }
-
-        /* Avatar positioning fix */
-        .stChatMessage .stAvatar {
-            position: sticky !important;
-            top: 0 !important;
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 50% !important;
-            margin-right: 10px !important;
-            flex-shrink: 0 !important;
-        }
-
-        /* Chat input container */
-        .stChatInputContainer {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            gap: 10px !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-            padding: 10px 20px !important;
-            background: black !important;
-            position: sticky !important;
-            bottom: 0 !important;
-            margin: 0 -20px !important;
-            width: calc(100% + 40px) !important;
-        }
-
-        /* Chat input styling with focus fixes */
-        .stChatInput, 
-        .stChatInput:focus,
-        .stChatInput:hover,
-        .stChatInput:active,
-        .stChatInput[data-focused="true"],
-        .stChatInput[data-baseweb="textarea"],
-        .stChatInput[data-baseweb="textarea"]:focus {
-            flex: 1 !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            border-radius: 20px !important;
-            padding: 10px 15px !important;
-            background-color: #222 !important;
-            color: white !important;
-            font-size: 14px !important;
-            min-width: 0 !important;
-            margin-right: 5px !important;
-            outline: none !important;
-            box-shadow: none !important;
-            transition: border-color 0.2s ease !important;
-        }
-
-        /* Remove focus outline and shadow */
-        .stChatInput:focus-within,
-        .stChatInput:focus-visible,
-        .stChatInput *:focus,
-        .stChatInput *:focus-visible {
-            outline: none !important;
-            box-shadow: none !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Audio player container fix */
-        .element-container:has(audio) {
-            margin-left: 42px !important;
-            margin-top: 8px !important;
-        }
-
-        /* Chat messages area */
-        .stChatMessageContainer {
-            padding: 20px 0 !important;
-            overflow-y: auto !important;
         }
     </style>
 """, unsafe_allow_html=True)
