@@ -72,9 +72,10 @@ st.markdown("""
         /* Chat Messages */
         .stChatMessage {
             display: flex !important;
-            align-items: flex-end !important;
+            align-items: flex-start !important;
             max-width: 70% !important;
             margin: 10px 0 !important;
+            position: relative !important;
         }
 
         /* Bot message */
@@ -105,15 +106,13 @@ st.markdown("""
 
         /* Avatar styling */
         .stChatMessage .stAvatar {
+            position: sticky !important;
+            top: 0 !important;
             width: 32px !important;
             height: 32px !important;
             border-radius: 50% !important;
-            background-color: white !important;
-            color: black !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
             margin-right: 10px !important;
+            flex-shrink: 0 !important;
         }
 
         /* Input Section */
@@ -132,7 +131,13 @@ st.markdown("""
         }
 
         /* Chat input */
-        .stChatInput {
+        .stChatInput, 
+        .stChatInput:focus,
+        .stChatInput:hover,
+        .stChatInput:active,
+        .stChatInput[data-focused="true"],
+        .stChatInput[data-baseweb="textarea"],
+        .stChatInput[data-baseweb="textarea"]:focus {
             flex: 1 !important;
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 20px !important;
@@ -142,6 +147,9 @@ st.markdown("""
             font-size: 14px !important;
             min-width: 0 !important;
             margin-right: 5px !important;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: border-color 0.2s ease !important;
         }
 
         /* Override all possible white backgrounds */
@@ -223,6 +231,79 @@ st.markdown("""
                 border: none !important;
                 border-radius: 0 !important;
             }
+        }
+
+        /* Message container fixes */
+        .stChatMessage {
+            display: flex !important;
+            align-items: flex-start !important;
+            max-width: 70% !important;
+            margin: 10px 0 !important;
+            position: relative !important;
+        }
+
+        /* Avatar positioning fix */
+        .stChatMessage .stAvatar {
+            position: sticky !important;
+            top: 0 !important;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            margin-right: 10px !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Chat input container */
+        .stChatInputContainer {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 10px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+            padding: 10px 20px !important;
+            background: black !important;
+            position: sticky !important;
+            bottom: 0 !important;
+            margin: 0 -20px !important;
+            width: calc(100% + 40px) !important;
+        }
+
+        /* Chat input styling with focus fixes */
+        .stChatInput, 
+        .stChatInput:focus,
+        .stChatInput:hover,
+        .stChatInput:active,
+        .stChatInput[data-focused="true"],
+        .stChatInput[data-baseweb="textarea"],
+        .stChatInput[data-baseweb="textarea"]:focus {
+            flex: 1 !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 20px !important;
+            padding: 10px 15px !important;
+            background-color: #222 !important;
+            color: white !important;
+            font-size: 14px !important;
+            min-width: 0 !important;
+            margin-right: 5px !important;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: border-color 0.2s ease !important;
+        }
+
+        /* Remove focus outline and shadow */
+        .stChatInput:focus-within,
+        .stChatInput:focus-visible,
+        .stChatInput *:focus,
+        .stChatInput *:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Audio player container fix */
+        .element-container:has(audio) {
+            margin-left: 42px !important;
+            margin-top: 8px !important;
         }
     </style>
 """, unsafe_allow_html=True)
