@@ -75,7 +75,58 @@ st.markdown("""
             align-items: flex-start !important;
             max-width: 70% !important;
             margin: 10px 0 !important;
-            position: relative !important;
+        }
+
+        /* Message content wrapper */
+        .stChatMessage > div {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 4px !important;
+        }
+
+        /* Audio container alignment */
+        .stChatMessage .element-container {
+            margin: 4px 0 0 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Audio player styling */
+        audio {
+            width: 100% !important;
+            max-width: 250px !important;
+            height: 36px !important;
+            margin: 0 !important;
+            filter: invert(1) !important;
+        }
+
+        /* Remove red border and all outlines */
+        .stChatInput, 
+        .stChatInput:focus,
+        .stChatInput:hover,
+        .stChatInput:active,
+        .stChatInput[data-focused="true"],
+        .stChatInput[data-baseweb="textarea"],
+        .stChatInput[data-baseweb="textarea"]:focus,
+        .stChatInput textarea,
+        .stChatInput textarea:focus {
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background-color: #222 !important;
+        }
+
+        /* Override any focus styles */
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Base web overrides */
+        [data-baseweb="base-input"], 
+        [data-baseweb="textarea"],
+        [data-baseweb="input"] {
+            background-color: #222 !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
         }
 
         /* Bot message */
@@ -199,14 +250,6 @@ st.markdown("""
             cursor: pointer !important;
             margin-left: 5px !important;
             transition: transform 0.2s !important;
-        }
-
-        /* Audio player */
-        audio {
-            width: 100% !important;
-            max-width: 200px !important;
-            margin-top: 10px !important;
-            filter: invert(1) !important;
         }
 
         /* Remove Streamlit elements */
