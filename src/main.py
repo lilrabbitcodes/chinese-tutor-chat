@@ -31,10 +31,12 @@ st.markdown("""
         div[data-testid="stToolbar"],
         #MainMenu,
         header,
-        footer {
+        footer,
+        [data-testid="stFooterBlock"] {
             visibility: hidden !important;
             height: 0px !important;
             position: fixed !important;
+            display: none !important;
         }
 
         /* Additional style to ensure the running indicator is hidden */
@@ -50,6 +52,17 @@ st.markdown("""
         /* Hide the top margin */
         .block-container {
             padding-top: 1rem !important;
+            padding-bottom: 0px !important;
+        }
+
+        /* Hide Streamlit footer */
+        footer:after {
+            content: none !important;
+        }
+        
+        /* Additional footer hiding */
+        .reportview-container .main footer {
+            display: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
