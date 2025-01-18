@@ -119,24 +119,25 @@ st.markdown("""
             margin-top: auto !important;
         }
 
-        /* Chat input wrapper */
-        .stChatInput > div {
-            background: transparent !important;
-        }
-
-        /* Chat input field */
-        .stChatInput textarea {
+        /* Chat input */
+        .stChatInput {
             background: #f5f5f5 !important;
             border: none !important;
             border-radius: 20px !important;
             padding: 12px 15px !important;
             color: #666 !important;
             font-size: 14px !important;
-            min-height: 45px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* Remove purple highlight */
+        .stChatInput div[data-baseweb="block"] {
+            background: transparent !important;
         }
 
         /* Input placeholder */
-        .stChatInput textarea::placeholder {
+        .stChatInput::placeholder {
             color: #666 !important;
         }
 
@@ -153,17 +154,6 @@ st.markdown("""
             margin-left: 8px !important;
             flex-shrink: 0 !important;
             color: white !important;
-            position: absolute !important;
-            right: 5px !important;
-            top: 50% !important;
-            transform: translateY(-50%) !important;
-        }
-
-        /* Remove any background colors from parent elements */
-        .stChatInput, 
-        .stChatInput > div,
-        .stChatInput > div > div {
-            background: transparent !important;
         }
 
         /* Audio player */
