@@ -26,15 +26,23 @@ if 'STREAMLIT_SHARING_MODE' in os.environ:
 # Hide streamlit style elements
 st.markdown("""
     <style>
-        /* Remove all Streamlit elements */
-        #MainMenu, header, footer, .stDeployButton, [data-testid="stFooterBlock"], 
+        /* Aggressive removal of all Streamlit elements */
+        #MainMenu, div.stApp > header, div.stApp > footer,
+        .stDeployButton, [data-testid="stFooterBlock"], 
         [data-testid="stToolbar"], [data-testid="stDecoration"], 
-        [data-testid="stStatusWidget"], .stActionButton {
+        [data-testid="stStatusWidget"], .stActionButton,
+        .viewerBadge_container__1QSob, .stStreamlitFooter,
+        .stFooterBranding, .stFooter, footer, footer::before, footer::after {
             display: none !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            top: -9999px !important;
         }
         
         /* Remove padding and margins */
-        .main .block-container {
+        .main .block-container, div.stApp > div {
             padding: 0 !important;
             margin: 0 !important;
             max-width: 100% !important;
@@ -47,15 +55,30 @@ st.markdown("""
             max-width: 100% !important;
         }
         
-        /* Remove watermark */
-        .viewerBadge_container__1QSob {
-            display: none !important;
-        }
-        
         /* Remove extra spacing */
-        .element-container, .stMarkdown {
+        .element-container, .stMarkdown, .stChatMessage {
             padding: 0 !important;
             margin: 0 !important;
+        }
+
+        /* Force body to fill viewport */
+        body {
+            background-color: transparent !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            min-height: 100vh !important;
+        }
+
+        /* Hide any remaining Streamlit elements */
+        [class*="st-"], [data-testid*="st"] {
+            margin-bottom: 0 !important;
+        }
+
+        /* Remove bottom spacing */
+        section[data-testid="stSidebar"], .block-container {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
         }
     </style>
 """, unsafe_allow_html=True)
