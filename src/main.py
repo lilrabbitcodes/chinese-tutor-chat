@@ -24,18 +24,8 @@ st.set_page_config(
 # Dark theme CSS
 st.markdown("""
     <style>
-        /* Reset and base styles */
-        * {
-            margin: 0 !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
-        }
-
-        /* Main container */
+        /* Main app container */
         .stApp {
-            background-color: white !important;
-            color: #333 !important;
             position: fixed !important;
             top: 0 !important;
             left: 0 !important;
@@ -44,68 +34,41 @@ st.markdown("""
             overflow: hidden !important;
             height: 100vh !important;
             width: 100vw !important;
-        }
-
-        /* Chat container */
-        .main .block-container {
-            max-width: 800px !important;
-            margin: 0 auto !important;
-            height: 100vh !important;
             display: flex !important;
             flex-direction: column !important;
-            position: relative !important;
+        }
+
+        /* Main content area */
+        .main .block-container {
+            padding: 0 !important;
+            max-width: none !important;
+            width: 100% !important;
+            height: 100% !important;
             overflow: hidden !important;
-            padding: 0 20px !important;
+            position: relative !important;
         }
 
         /* Title styling */
         h1 {
-            font-size: 18px !important;
-            padding: 15px !important;
-            text-align: center !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-            background: white !important;
             position: sticky !important;
             top: 0 !important;
-            z-index: 100 !important;
-            margin-bottom: 10px !important;
+            background: white !important;
+            margin: 0 !important;
+            padding: 1rem !important;
+            z-index: 99 !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
 
         /* Messages container */
         .stChatMessageContainer {
-            flex: 1 1 auto !important;
+            height: calc(100vh - 180px) !important;
             overflow-y: auto !important;
-            overflow-x: hidden !important;
-            padding: 10px 0 !important;
-            position: relative !important;
-            height: calc(100vh - 140px) !important;
-        }
-
-        /* Message styling */
-        .stChatMessage {
-            display: flex !important;
-            align-items: flex-start !important;
-            max-width: 85% !important;
-            margin: 8px 0 !important;
-            padding: 12px !important;
-            border-radius: 15px !important;
-            color: white !important;
-        }
-
-        /* Bot message */
-        .stChatMessage[data-testid="assistant-message"] {
-            align-self: flex-start !important;
-            background: #6E45E2 !important;
-            border-radius: 15px 15px 15px 0 !important;
-            margin-right: 40px !important;
-        }
-
-        /* User message */
-        .stChatMessage[data-testid="user-message"] {
-            align-self: flex-end !important;
-            background: #333 !important;
-            border-radius: 15px 15px 0 15px !important;
-            margin-left: 40px !important;
+            padding: 1rem !important;
+            position: fixed !important;
+            top: 60px !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 60px !important;
         }
 
         /* Input container */
@@ -120,8 +83,7 @@ st.markdown("""
             z-index: 100 !important;
             display: flex !important;
             align-items: center !important;
-            gap: 8px !important;
-            padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+            height: 60px !important;
         }
 
         /* Chat input wrapper */
@@ -133,29 +95,20 @@ st.markdown("""
             position: relative !important;
             display: flex !important;
             align-items: center !important;
+            max-width: calc(100% - 20px) !important;
+            margin: 0 10px !important;
         }
 
         /* Input field */
         .stChatInput textarea {
             border: none !important;
             background: transparent !important;
-            padding: 8px 15px !important;
+            padding: 8px 40px 8px 15px !important;
             color: #333 !important;
             font-size: 16px !important;
-            width: calc(100% - 50px) !important;  /* Make room for button */
+            width: 100% !important;
             min-height: 40px !important;
             line-height: 20px !important;
-        }
-
-        /* Remove default styling */
-        .stChatInput > div,
-        .stChatInput div[data-baseweb="block"],
-        .stChatInput div[data-baseweb="input"],
-        .stChatInput div[data-baseweb="textarea"] {
-            background: transparent !important;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
         }
 
         /* Send button */
@@ -175,7 +128,6 @@ st.markdown("""
             justify-content: center !important;
             cursor: pointer !important;
             padding: 0 !important;
-            z-index: 101 !important;
         }
 
         /* Send button icon */
@@ -186,39 +138,24 @@ st.markdown("""
             margin: auto !important;
         }
 
-        /* Messages container */
-        .stChatMessageContainer {
-            margin-bottom: 60px !important;
-            overflow-y: auto !important;
-            height: calc(100vh - 120px - env(safe-area-inset-bottom)) !important;
-        }
-
         /* iOS specific fixes */
         @supports (-webkit-touch-callout: none) {
             .stChatInputContainer {
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+                height: calc(60px + env(safe-area-inset-bottom)) !important;
+            }
+
+            .stChatMessageContainer {
+                bottom: calc(60px + env(safe-area-inset-bottom)) !important;
             }
         }
 
-        /* Audio player */
-        audio {
-            width: 100% !important;
-            max-width: 200px !important;
-            margin-top: 8px !important;
-        }
-
-        /* Success message */
-        .stSuccess {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 1000 !important;
-            background-color: #043927 !important;
-            color: white !important;
-            padding: 8px !important;
-            font-size: 14px !important;
-            text-align: center !important;
+        /* Remove Streamlit elements */
+        #MainMenu, div.stApp > header, div.stApp > footer,
+        .stDeployButton, [data-testid="stFooterBlock"], 
+        [data-testid="stToolbar"], [data-testid="stDecoration"], 
+        [data-testid="stStatusWidget"] {
+            display: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
