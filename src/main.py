@@ -125,15 +125,17 @@ st.markdown("""
             padding: 12px 15px !important;
             color: #666 !important;
             font-size: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            background: transparent !important;
         }
 
-        /* Override all backgrounds */
+        /* Override backgrounds */
         .stChatInput,
         .stChatInput > div,
         .stChatInput div[data-baseweb="block"],
         .stChatInput div[data-baseweb="input"],
-        .stChatInput div[data-baseweb="textarea"],
-        .stChatInput div {
+        .stChatInput div[data-baseweb="textarea"] {
             background: transparent !important;
             border-radius: 0 !important;
         }
@@ -143,11 +145,47 @@ st.markdown("""
             color: #666 !important;
         }
 
-        /* Send button - only keep essential styles */
+        /* Send button */
         .stChatInput > div:last-child {
-            color: #333 !important;
+            background-color: #333 !important;
+            width: 35px !important;
+            height: 35px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             cursor: pointer !important;
             margin-left: 8px !important;
+            flex-shrink: 0 !important;
+            color: white !important;
+        }
+
+        /* Send button icon */
+        .stChatInput > div:last-child svg {
+            fill: white !important;
+            width: 18px !important;
+            height: 18px !important;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .main .block-container {
+                padding: 0 10px !important;
+            }
+
+            .stChatInputContainer {
+                padding: 10px !important;
+                padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+            }
+
+            .stChatMessageContainer {
+                height: calc(100vh - 130px - env(safe-area-inset-bottom)) !important;
+            }
+
+            .stChatInput > div:last-child {
+                width: 32px !important;
+                height: 32px !important;
+            }
         }
 
         /* Audio player */
@@ -169,22 +207,6 @@ st.markdown("""
             padding: 8px !important;
             font-size: 14px !important;
             text-align: center !important;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .main .block-container {
-                padding: 0 10px !important;
-            }
-
-            .stChatInputContainer {
-                padding: 10px !important;
-                padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
-            }
-
-            .stChatMessageContainer {
-                height: calc(100vh - 130px - env(safe-area-inset-bottom)) !important;
-            }
         }
     </style>
 """, unsafe_allow_html=True)
