@@ -157,8 +157,8 @@ st.markdown("""
             box-shadow: none !important;
         }
 
-        /* Send button */
-        .stSendButton {
+        /* Send button (target the existing Streamlit button) */
+        .stChatInput button {
             position: fixed !important;
             bottom: max(10px, env(safe-area-inset-bottom)) !important;
             right: 10px !important;
@@ -177,7 +177,7 @@ st.markdown("""
         }
 
         /* Send button icon */
-        .stSendButton svg {
+        .stChatInput button svg {
             width: 24px !important;
             height: 24px !important;
             fill: white !important;
@@ -197,7 +197,7 @@ st.markdown("""
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
             }
             
-            .stSendButton {
+            .stChatInput button {
                 bottom: max(15px, env(safe-area-inset-bottom)) !important;
             }
         }
@@ -437,12 +437,3 @@ if user_prompt:
         st.error(f"Connection Error: Unable to connect to OpenAI API. Please check your internet connection and API key. Error: {str(e)}")
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
-
-# Add custom send button HTML
-st.markdown("""
-    <button class="stSendButton">
-        <svg viewBox="0 0 24 24">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-        </svg>
-    </button>
-""", unsafe_allow_html=True)
