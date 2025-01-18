@@ -130,8 +130,9 @@ st.markdown("""
             border: 1px solid #ddd !important;
             border-radius: 20px !important;
             background: white !important;
-            margin-right: 45px !important;  /* Space for button */
             position: relative !important;
+            display: flex !important;
+            align-items: center !important;
         }
 
         /* Input field */
@@ -141,7 +142,7 @@ st.markdown("""
             padding: 8px 15px !important;
             color: #333 !important;
             font-size: 16px !important;
-            width: 100% !important;
+            width: calc(100% - 50px) !important;  /* Make room for button */
             min-height: 40px !important;
             line-height: 20px !important;
         }
@@ -157,17 +158,18 @@ st.markdown("""
             box-shadow: none !important;
         }
 
-        /* Send button (target the existing Streamlit button) */
+        /* Send button */
         .stChatInput button {
-            position: fixed !important;
-            bottom: max(10px, env(safe-area-inset-bottom)) !important;
-            right: 10px !important;
+            position: absolute !important;
+            right: 4px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
             background-color: #333 !important;
             color: white !important;
             border: none !important;
             border-radius: 50% !important;
-            width: 40px !important;
-            height: 40px !important;
+            width: 32px !important;
+            height: 32px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -178,15 +180,15 @@ st.markdown("""
 
         /* Send button icon */
         .stChatInput button svg {
-            width: 24px !important;
-            height: 24px !important;
+            width: 20px !important;
+            height: 20px !important;
             fill: white !important;
             margin: auto !important;
         }
 
         /* Messages container */
         .stChatMessageContainer {
-            margin-bottom: 60px !important;  /* Space for input */
+            margin-bottom: 60px !important;
             overflow-y: auto !important;
             height: calc(100vh - 120px - env(safe-area-inset-bottom)) !important;
         }
@@ -195,10 +197,6 @@ st.markdown("""
         @supports (-webkit-touch-callout: none) {
             .stChatInputContainer {
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
-            }
-            
-            .stChatInput button {
-                bottom: max(15px, env(safe-area-inset-bottom)) !important;
             }
         }
 
