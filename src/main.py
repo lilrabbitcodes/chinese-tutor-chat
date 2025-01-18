@@ -111,7 +111,7 @@ st.markdown("""
         /* Input container */
         .stChatInputContainer {
             border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-            padding: 15px 0 !important;
+            padding: 15px 10px !important;
             background: white !important;
             position: sticky !important;
             bottom: 0 !important;
@@ -127,6 +127,23 @@ st.markdown("""
             padding: 12px 15px !important;
             color: #333 !important;
             font-size: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* Send button */
+        .stChatInput > div:last-child {
+            background-color: #6E45E2 !important;
+            border-radius: 50% !important;
+            width: 32px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            margin-left: 8px !important;
+            flex-shrink: 0 !important;
+            color: white !important;
         }
 
         /* Audio player */
@@ -157,7 +174,7 @@ st.markdown("""
             }
 
             .stChatInputContainer {
-                padding: 10px 0 !important;
+                padding: 10px !important;
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
             }
 
@@ -166,6 +183,39 @@ st.markdown("""
             }
         }
     </style>
+""", unsafe_allow_html=True)
+
+# Add auto-scrolling JavaScript
+st.markdown("""
+    <script>
+        const scrollToBottom = () => {
+            const messages = document.querySelector('.stChatMessageContainer');
+            if (messages) {
+                messages.scrollTop = messages.scrollHeight;
+            }
+        };
+
+        // Create observer to watch for new messages
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length) {
+                    scrollToBottom();
+                }
+            });
+        });
+
+        // Start observing
+        const messagesContainer = document.querySelector('.stChatMessageContainer');
+        if (messagesContainer) {
+            observer.observe(messagesContainer, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        // Initial scroll
+        scrollToBottom();
+    </script>
 """, unsafe_allow_html=True)
 
 # Load custom avatars with fallback to emojis
@@ -328,9 +378,20 @@ if user_prompt:
             
             # Add audio player for the response
             audio_html = text_to_speech(chinese_only)
-            # Store the audio element
             st.session_state.audio_elements[message_id] = audio_html
             st.markdown(audio_html, unsafe_allow_html=True)
+            
+            # Add auto-scroll trigger
+            st.markdown("""
+                <script>
+                    setTimeout(() => {
+                        const messages = document.querySelector('.stChatMessageContainer');
+                        if (messages) {
+                            messages.scrollTop = messages.scrollHeight;
+                        }
+                    }, 100);
+                </script>
+            """, unsafe_allow_html=True)
             
     except APIConnectionError as e:
         st.error(f"Connection Error: Unable to connect to OpenAI API. Please check your internet connection and API key. Error: {str(e)}")
