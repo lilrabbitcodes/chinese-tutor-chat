@@ -20,6 +20,24 @@ st.set_page_config(
     layout="centered"
 )
 
+# Hide streamlit style elements
+st.markdown("""
+    <style>
+        /* Hide the running indicator */
+        #stStatusWidget {
+            display: none !important;
+        }
+        /* Hide "Made with Streamlit" footer */
+        footer {
+            visibility: hidden;
+        }
+        /* Hide hamburger menu */
+        #MainMenu {
+            visibility: hidden;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Load custom avatars with fallback to emojis
 working_dir = os.path.dirname(os.path.abspath(__file__))
 ASSETS_DIR = os.path.join(working_dir, "assets")
@@ -95,14 +113,20 @@ def text_to_speech(text):
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
+# Add this near your other session state initialization
+if "audio_elements" not in st.session_state:
+    st.session_state.audio_elements = {}
+
 # streamlit page title
 st.title("🤖 GPT-4o - ChatBot")
 
 # display chat history with custom avatars
 for message in st.session_state.chat_history:
-    avatar_img = TUTOR_AVATAR if message["role"] == "assistant" else USER_AVATAR
-    with st.chat_message(message["role"], avatar=avatar_img):
+    with st.chat_message(message["role"], avatar=TUTOR_AVATAR if message["role"] == "assistant" else USER_AVATAR):
         st.markdown(message["content"])
+        # Display stored audio if it exists for this message
+        if message["role"] == "assistant" and message.get("id") in st.session_state.audio_elements:
+            st.markdown(st.session_state.audio_elements[message["id"]], unsafe_allow_html=True)
 
 # input field for user's message
 user_prompt = st.chat_input("Ask your Chinese tutor...")
@@ -150,8 +174,15 @@ if user_prompt:
             ]
         )
 
+        # Generate a unique ID for this message
+        message_id = len(st.session_state.chat_history)
+        
         assistant_response = response.choices[0].message.content
-        st.session_state.chat_history.append({"role": "assistant", "content": assistant_response})
+        st.session_state.chat_history.append({
+            "role": "assistant", 
+            "content": assistant_response,
+            "id": message_id
+        })
 
         # display tutor's response with custom avatar
         with st.chat_message("assistant", avatar=TUTOR_AVATAR):
@@ -167,6 +198,8 @@ if user_prompt:
             
             # Add audio player for the response
             audio_html = text_to_speech(chinese_only)
+            # Store the audio element
+            st.session_state.audio_elements[message_id] = audio_html
             st.markdown(audio_html, unsafe_allow_html=True)
             
     except APIConnectionError as e:
