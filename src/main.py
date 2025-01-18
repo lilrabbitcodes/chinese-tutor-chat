@@ -125,15 +125,25 @@ st.markdown("""
             border: none !important;
             border-radius: 20px !important;
             padding: 12px 15px !important;
-            color: #333 !important;
+            color: #666 !important;
             font-size: 14px !important;
             display: flex !important;
             align-items: center !important;
         }
 
+        /* Input placeholder */
+        .stChatInput::placeholder {
+            color: #666 !important;
+        }
+
+        /* Remove purple background from input */
+        .stChatInput > div:first-child {
+            background: transparent !important;
+        }
+
         /* Send button */
         .stChatInput > div:last-child {
-            background-color: #6E45E2 !important;
+            background-color: #333 !important;
             border-radius: 50% !important;
             width: 32px !important;
             height: 32px !important;
