@@ -144,36 +144,39 @@ st.markdown("""
             margin-right: 5px !important;
         }
 
-        /* Input field focus state */
-        .stChatInput:focus {
-            border-color: rgba(255, 255, 255, 0.5) !important;
-            outline: none !important;
-            box-shadow: none !important;
+        /* Override all possible white backgrounds */
+        .stChatInput, 
+        .stChatInput:focus,
+        .stChatInput:hover,
+        .stChatInput > div,
+        .stChatInput textarea,
+        .stChatInput [data-baseweb="textarea"],
+        .stChatInput [data-baseweb="textarea"]:focus,
+        .stChatInput [data-baseweb="base-input"],
+        .stChatInput [data-baseweb="base-input"]:focus,
+        .stChatInput [data-baseweb="input"],
+        .stChatInput [data-baseweb="input"]:focus,
+        .stChatInput * {
             background-color: #222 !important;
-        }
-
-        /* Input field placeholder */
-        .stChatInput::placeholder {
-            color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Remove white background from textarea */
-        .stChatInput textarea {
-            background-color: transparent !important;
             color: white !important;
         }
 
-        /* Remove white background when typing */
-        .stChatInput[data-baseweb="textarea"] {
-            background-color: #222 !important;
+        /* Input field focus state */
+        .stChatInput:focus,
+        .stChatInput:focus-within {
+            border-color: rgba(255, 255, 255, 0.5) !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
 
-        .stChatInput[data-baseweb="textarea"]:focus-within {
-            background-color: #222 !important;
+        /* Input field placeholder */
+        .stChatInput::placeholder,
+        .stChatInput textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
         }
 
-        /* Send button */
-        .stChatInput > div {
+        /* Send button - keep this white */
+        .stChatInput > div:last-child {
             background-color: white !important;
             color: black !important;
             border: none !important;
@@ -188,10 +191,6 @@ st.markdown("""
             cursor: pointer !important;
             margin-left: 5px !important;
             transition: transform 0.2s !important;
-        }
-
-        .stChatInput > div:hover {
-            transform: scale(1.05) !important;
         }
 
         /* Audio player */
