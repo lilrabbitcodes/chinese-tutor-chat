@@ -109,10 +109,17 @@ st.markdown("""
         .stChatInput[data-baseweb="textarea"]:focus,
         .stChatInput textarea,
         .stChatInput textarea:focus {
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border: none !important;
             outline: none !important;
             box-shadow: none !important;
             background-color: #222 !important;
+            color: white !important;
+            font-size: 14px !important;
+            padding: 10px 15px !important;
+            border-radius: 20px !important;
+            flex: 1 !important;
+            min-width: 0 !important;
+            margin-right: 5px !important;
         }
 
         /* Override any focus styles */
@@ -126,7 +133,7 @@ st.markdown("""
         [data-baseweb="textarea"],
         [data-baseweb="input"] {
             background-color: #222 !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
+            border: none !important;
         }
 
         /* Bot message */
