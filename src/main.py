@@ -117,55 +117,67 @@ st.markdown("""
             bottom: 0 !important;
             z-index: 100 !important;
             margin-top: auto !important;
-        }
-
-        /* Chat input */
-        .stChatInput {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            padding: 12px 15px !important;
-            color: #333 !important;
-            font-size: 14px !important;
             display: flex !important;
             align-items: center !important;
+            gap: 10px !important;
         }
 
-        /* Remove all backgrounds and borders */
-        .stChatInput,
+        /* Chat input wrapper */
+        .stChatInput {
+            flex: 1 !important;
+            border: 1px solid #ddd !important;
+            border-radius: 20px !important;
+            padding: 8px 15px !important;
+            color: #333 !important;
+            font-size: 14px !important;
+            background: white !important;
+        }
+
+        /* Remove default styling */
         .stChatInput > div,
         .stChatInput div[data-baseweb="block"],
         .stChatInput div[data-baseweb="input"],
-        .stChatInput div[data-baseweb="textarea"],
-        .stChatInput textarea {
+        .stChatInput div[data-baseweb="textarea"] {
             background: transparent !important;
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
         }
 
-        /* Input text color */
+        /* Input text */
         .stChatInput textarea {
             color: #333 !important;
-        }
-
-        /* Input placeholder */
-        .stChatInput::placeholder {
-            color: #999 !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
         }
 
         /* Send button */
-        .stChatInput > div:last-child {
-            color: #333 !important;
+        .stSendButton {
+            background-color: #333 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 50% !important;
+            width: 36px !important;
+            height: 36px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             cursor: pointer !important;
-            margin-left: 8px !important;
-            opacity: 0.8 !important;
-            transition: opacity 0.2s !important;
+            flex-shrink: 0 !important;
+            transition: background-color 0.2s !important;
+            padding: 8px !important;
         }
 
-        /* Send button hover */
-        .stChatInput > div:last-child:hover {
-            opacity: 1 !important;
+        .stSendButton:hover {
+            background-color: #555 !important;
+        }
+
+        /* Send button icon */
+        .stSendButton svg {
+            width: 20px !important;
+            height: 20px !important;
+            fill: white !important;
         }
 
         /* Mobile optimizations */
@@ -173,6 +185,11 @@ st.markdown("""
             .stChatInputContainer {
                 padding: 10px !important;
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+            }
+
+            .stSendButton {
+                width: 40px !important;
+                height: 40px !important;
             }
         }
 
@@ -411,3 +428,12 @@ if user_prompt:
         st.error(f"Connection Error: Unable to connect to OpenAI API. Please check your internet connection and API key. Error: {str(e)}")
     except Exception as e:
         st.error(f"An error occurred: {str(e)}")
+
+# Add custom send button HTML
+st.markdown("""
+    <button class="stSendButton">
+        <svg viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+    </button>
+""", unsafe_allow_html=True)
