@@ -111,15 +111,17 @@ st.markdown("""
         /* Input container */
         .stChatInputContainer {
             border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-            padding: 15px 10px !important;
+            padding: 10px !important;
             background: white !important;
-            position: sticky !important;
+            position: fixed !important;
             bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
             z-index: 100 !important;
-            margin-top: auto !important;
             display: flex !important;
             align-items: center !important;
-            gap: 10px !important;
+            gap: 8px !important;
+            padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
         }
 
         /* Chat input wrapper */
@@ -127,10 +129,21 @@ st.markdown("""
             flex: 1 !important;
             border: 1px solid #ddd !important;
             border-radius: 20px !important;
+            background: white !important;
+            margin-right: 45px !important;  /* Space for button */
+            position: relative !important;
+        }
+
+        /* Input field */
+        .stChatInput textarea {
+            border: none !important;
+            background: transparent !important;
             padding: 8px 15px !important;
             color: #333 !important;
-            font-size: 14px !important;
-            background: white !important;
+            font-size: 16px !important;
+            width: 100% !important;
+            min-height: 40px !important;
+            line-height: 20px !important;
         }
 
         /* Remove default styling */
@@ -144,52 +157,48 @@ st.markdown("""
             box-shadow: none !important;
         }
 
-        /* Input text */
-        .stChatInput textarea {
-            color: #333 !important;
-            padding: 0 !important;
-            border: none !important;
-            background: transparent !important;
-        }
-
         /* Send button */
         .stSendButton {
+            position: fixed !important;
+            bottom: max(10px, env(safe-area-inset-bottom)) !important;
+            right: 10px !important;
             background-color: #333 !important;
             color: white !important;
             border: none !important;
             border-radius: 50% !important;
-            width: 36px !important;
-            height: 36px !important;
+            width: 40px !important;
+            height: 40px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             cursor: pointer !important;
-            flex-shrink: 0 !important;
-            transition: background-color 0.2s !important;
-            padding: 8px !important;
-        }
-
-        .stSendButton:hover {
-            background-color: #555 !important;
+            padding: 0 !important;
+            z-index: 101 !important;
         }
 
         /* Send button icon */
         .stSendButton svg {
-            width: 20px !important;
-            height: 20px !important;
+            width: 24px !important;
+            height: 24px !important;
             fill: white !important;
+            margin: auto !important;
         }
 
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
+        /* Messages container */
+        .stChatMessageContainer {
+            margin-bottom: 60px !important;  /* Space for input */
+            overflow-y: auto !important;
+            height: calc(100vh - 120px - env(safe-area-inset-bottom)) !important;
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
             .stChatInputContainer {
-                padding: 10px !important;
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
             }
-
+            
             .stSendButton {
-                width: 40px !important;
-                height: 40px !important;
+                bottom: max(15px, env(safe-area-inset-bottom)) !important;
             }
         }
 
