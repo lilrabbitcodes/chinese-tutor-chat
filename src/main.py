@@ -23,17 +23,30 @@ st.set_page_config(
 # Hide streamlit style elements
 st.markdown("""
     <style>
-        /* Hide the running indicator */
-        #stStatusWidget {
+        /* Hide the running indicator and other Streamlit elements */
+        div[data-testid="stStatusWidget"],
+        div[data-testid="stToolbar"],
+        #MainMenu,
+        header,
+        footer {
+            visibility: hidden !important;
+            height: 0px !important;
+            position: fixed !important;
+        }
+
+        /* Additional style to ensure the running indicator is hidden */
+        .stApp > header {
             display: none !important;
         }
-        /* Hide "Made with Streamlit" footer */
-        footer {
-            visibility: hidden;
+
+        /* Hide Streamlit's default header */
+        .css-18ni7ap.e8zbici2 {
+            display: none !important;
         }
-        /* Hide hamburger menu */
-        #MainMenu {
-            visibility: hidden;
+
+        /* Hide the top margin */
+        .block-container {
+            padding-top: 1rem !important;
         }
     </style>
 """, unsafe_allow_html=True)
