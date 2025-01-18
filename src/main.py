@@ -35,73 +35,88 @@ st.markdown("""
         /* Main container */
         .stApp {
             background-color: white !important;
-            color: #333 !important;  /* Dark text for contrast */
-            padding: 0 20px !important;
+            color: #333 !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
         }
 
+        /* Chat container */
         .main .block-container {
             max-width: 800px !important;
             margin: 0 auto !important;
             height: 100vh !important;
             display: flex !important;
             flex-direction: column !important;
-            padding: 0 !important;
             position: relative !important;
-        }
-
-        /* Success message */
-        .stSuccess {
-            margin: 0 20px !important;
-            background-color: #043927 !important;
-            color: white !important;
-            border-radius: 4px !important;
+            overflow: hidden !important;
+            padding: 0 20px !important;
         }
 
         /* Title styling */
         h1 {
             font-size: 18px !important;
-            padding: 20px !important;
+            padding: 15px !important;
             text-align: center !important;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-            margin: 0 20px !important;
-            color: #333 !important;  /* Dark text for contrast */
+            background: white !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 100 !important;
+            margin-bottom: 10px !important;
+        }
+
+        /* Messages container */
+        .stChatMessageContainer {
+            flex: 1 1 auto !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            padding: 10px 0 !important;
+            position: relative !important;
+            height: calc(100vh - 140px) !important;
         }
 
         /* Message styling */
         .stChatMessage {
             display: flex !important;
             align-items: flex-start !important;
-            max-width: 80% !important;
-            margin: 10px 0 !important;
+            max-width: 85% !important;
+            margin: 8px 0 !important;
             padding: 12px !important;
             border-radius: 15px !important;
-            color: white !important;  /* White text for messages */
+            color: white !important;
         }
 
         /* Bot message */
         .stChatMessage[data-testid="assistant-message"] {
             align-self: flex-start !important;
-            background: #6E45E2 !important;  /* Purple background */
+            background: #6E45E2 !important;
             border-radius: 15px 15px 15px 0 !important;
-            margin-right: 60px !important;
+            margin-right: 40px !important;
         }
 
         /* User message */
         .stChatMessage[data-testid="user-message"] {
             align-self: flex-end !important;
-            background: #333 !important;  /* Dark background */
+            background: #333 !important;
             border-radius: 15px 15px 0 15px !important;
-            margin-left: 60px !important;
+            margin-left: 40px !important;
         }
 
         /* Input container */
         .stChatInputContainer {
             border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-            padding: 15px 20px !important;
-            margin: 0 20px !important;
+            padding: 15px 0 !important;
             background: white !important;
             position: sticky !important;
             bottom: 0 !important;
+            z-index: 100 !important;
+            margin-top: auto !important;
         }
 
         /* Chat input */
@@ -114,10 +129,6 @@ st.markdown("""
             font-size: 14px !important;
         }
 
-        .stChatInput::placeholder {
-            color: #888 !important;
-        }
-
         /* Audio player */
         audio {
             width: 100% !important;
@@ -125,28 +136,33 @@ st.markdown("""
             margin-top: 8px !important;
         }
 
+        /* Success message */
+        .stSuccess {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            background-color: #043927 !important;
+            color: white !important;
+            padding: 8px !important;
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+
         /* Mobile optimizations */
         @media (max-width: 768px) {
-            .stApp {
-                padding: 0 !important;
-            }
-
-            .stChatMessage {
-                max-width: 85% !important;
-            }
-
-            .stChatMessage[data-testid="assistant-message"] {
-                margin-right: 40px !important;
-            }
-
-            .stChatMessage[data-testid="user-message"] {
-                margin-left: 40px !important;
+            .main .block-container {
+                padding: 0 10px !important;
             }
 
             .stChatInputContainer {
-                margin: 0 !important;
-                padding: 15px !important;
-                padding-bottom: max(15px, env(safe-area-inset-bottom)) !important;
+                padding: 10px 0 !important;
+                padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+            }
+
+            .stChatMessageContainer {
+                height: calc(100vh - 130px - env(safe-area-inset-bottom)) !important;
             }
         }
     </style>
