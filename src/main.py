@@ -144,14 +144,32 @@ st.markdown("""
             margin-right: 5px !important;
         }
 
+        /* Input field focus state */
         .stChatInput:focus {
             border-color: rgba(255, 255, 255, 0.5) !important;
             outline: none !important;
             box-shadow: none !important;
+            background-color: #222 !important;
         }
 
+        /* Input field placeholder */
         .stChatInput::placeholder {
             color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Remove white background from textarea */
+        .stChatInput textarea {
+            background-color: transparent !important;
+            color: white !important;
+        }
+
+        /* Remove white background when typing */
+        .stChatInput[data-baseweb="textarea"] {
+            background-color: #222 !important;
+        }
+
+        .stChatInput[data-baseweb="textarea"]:focus-within {
+            background-color: #222 !important;
         }
 
         /* Send button */
