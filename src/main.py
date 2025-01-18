@@ -13,12 +13,15 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# configuring streamlit page settings - MUST BE FIRST ST COMMAND
-st.set_page_config(
-    page_title="Chinese Tutor Chat",
-    page_icon="🎓",
-    layout="centered"
-)
+# Add after imports
+if 'STREAMLIT_SHARING_MODE' in os.environ:
+    st.set_page_config(
+        page_title="Chinese Tutor Chat",
+        page_icon="🎓",
+        layout="centered",
+        initial_sidebar_state="collapsed",
+        menu_items=None
+    )
 
 # Hide streamlit style elements
 st.markdown("""
