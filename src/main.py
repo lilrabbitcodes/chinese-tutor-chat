@@ -148,8 +148,10 @@ st.markdown("""
         /* Send button */
         .stChatInput > div:last-child {
             background-color: #333 !important;
-            width: 35px !important;
-            height: 35px !important;
+            min-width: 38px !important;
+            min-height: 38px !important;
+            width: 38px !important;
+            height: 38px !important;
             border-radius: 50% !important;
             display: flex !important;
             align-items: center !important;
@@ -158,13 +160,17 @@ st.markdown("""
             margin-left: 8px !important;
             flex-shrink: 0 !important;
             color: white !important;
+            padding: 8px !important;
+            position: relative !important;
+            right: 5px !important;
         }
 
         /* Send button icon */
         .stChatInput > div:last-child svg {
             fill: white !important;
-            width: 18px !important;
-            height: 18px !important;
+            width: 20px !important;
+            height: 20px !important;
+            margin: auto !important;
         }
 
         /* Mobile optimizations */
@@ -183,8 +189,16 @@ st.markdown("""
             }
 
             .stChatInput > div:last-child {
-                width: 32px !important;
-                height: 32px !important;
+                min-width: 42px !important;
+                min-height: 42px !important;
+                width: 42px !important;
+                height: 42px !important;
+                padding: 10px !important;
+            }
+
+            .stChatInput > div:last-child svg {
+                width: 22px !important;
+                height: 22px !important;
             }
         }
 
