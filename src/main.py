@@ -122,83 +122,57 @@ st.markdown("""
         /* Chat input */
         .stChatInput {
             border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
             padding: 12px 15px !important;
-            color: #666 !important;
+            color: #333 !important;
             font-size: 14px !important;
             display: flex !important;
             align-items: center !important;
-            background: transparent !important;
         }
 
-        /* Override backgrounds */
+        /* Remove all backgrounds and borders */
         .stChatInput,
         .stChatInput > div,
         .stChatInput div[data-baseweb="block"],
         .stChatInput div[data-baseweb="input"],
-        .stChatInput div[data-baseweb="textarea"] {
+        .stChatInput div[data-baseweb="textarea"],
+        .stChatInput textarea {
             background: transparent !important;
-            border-radius: 0 !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Input text color */
+        .stChatInput textarea {
+            color: #333 !important;
         }
 
         /* Input placeholder */
         .stChatInput::placeholder {
-            color: #666 !important;
+            color: #999 !important;
         }
 
         /* Send button */
         .stChatInput > div:last-child {
-            background-color: #333 !important;
-            min-width: 38px !important;
-            min-height: 38px !important;
-            width: 38px !important;
-            height: 38px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            color: #333 !important;
             cursor: pointer !important;
             margin-left: 8px !important;
-            flex-shrink: 0 !important;
-            color: white !important;
-            padding: 8px !important;
-            position: relative !important;
-            right: 5px !important;
+            opacity: 0.8 !important;
+            transition: opacity 0.2s !important;
         }
 
-        /* Send button icon */
-        .stChatInput > div:last-child svg {
-            fill: white !important;
-            width: 20px !important;
-            height: 20px !important;
-            margin: auto !important;
+        /* Send button hover */
+        .stChatInput > div:last-child:hover {
+            opacity: 1 !important;
         }
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
-            .main .block-container {
-                padding: 0 10px !important;
-            }
-
             .stChatInputContainer {
                 padding: 10px !important;
                 padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
-            }
-
-            .stChatMessageContainer {
-                height: calc(100vh - 130px - env(safe-area-inset-bottom)) !important;
-            }
-
-            .stChatInput > div:last-child {
-                min-width: 42px !important;
-                min-height: 42px !important;
-                width: 42px !important;
-                height: 42px !important;
-                padding: 10px !important;
-            }
-
-            .stChatInput > div:last-child svg {
-                width: 22px !important;
-                height: 22px !important;
             }
         }
 
